@@ -8,10 +8,7 @@ const cryptoApiHeaders = {
 
 const baseUrl = 'https://coinranking1.p.rapidapi.com';
 
-const createRequest = (url: string) => ({ url, headers: cryptoApiHeaders });
-
 //Create Api take an object with the following
-
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi', //will be use in the store to define the key of the reducer slice
   baseQuery: fetchBaseQuery({ baseUrl }), // similar to fetch API
@@ -19,7 +16,11 @@ export const cryptoApi = createApi({
   endpoints: builder => ({
     //Example of GET request, the query need to be a function which return an object contain the final API endpoint and related options to be called
     getCryptos: builder.query({
-      query: () => createRequest('/coins'),
+      query: (count?: number) => ({
+        url: `${baseUrl}/coins`,
+        params: { limit: count ? count : 50 },
+        headers: cryptoApiHeaders,
+      }),
     }),
   }),
 });
