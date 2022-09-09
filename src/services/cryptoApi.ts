@@ -16,9 +16,9 @@ export const cryptoApi = createApi({
   endpoints: builder => ({
     //Example of GET request, the query need to be a function which return an object contain the final API endpoint and related options to be called
     getCryptos: builder.query({
-      query: (count?: number) => ({
+      query: (count: number = 10) => ({
         url: `${baseUrl}/coins`,
-        params: { limit: count ? count : 50 },
+        params: { limit: count },
         headers: cryptoApiHeaders,
       }),
     }),

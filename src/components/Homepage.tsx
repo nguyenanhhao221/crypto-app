@@ -10,7 +10,7 @@ type Props = {};
 const { Title } = Typography;
 
 const Homepage = (props: Props) => {
-  const { data, isFetching } = useGetCryptosQuery(50);
+  const { data, isFetching } = useGetCryptosQuery(10);
   const globalStats = data?.data?.stats;
 
   if (isFetching) return <div>Loading...</div>;

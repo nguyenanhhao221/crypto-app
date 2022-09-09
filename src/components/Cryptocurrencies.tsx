@@ -4,7 +4,7 @@ import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Link } from 'react-router-dom';
 import millify from 'millify';
 
-type Props = { simplified?: boolean };
+type Props = { simplified: boolean };
 type T = {
   [key: string]: number | string;
 };
