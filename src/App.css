@@ -49,6 +49,10 @@ a:hover {
   padding: 20px;
   align-items: center;
   width: 100%;
+  gap: 0.5rem;
+}
+.logo-container h2 {
+  margin-bottom: 0 !important;
 }
 .logo {
   margin: 0 0 0 15px;
