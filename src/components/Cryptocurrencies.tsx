@@ -14,7 +14,7 @@ const Cryptocurrencies = ({ simplified }: Props) => {
   const count = simplified ? 10 : 100;
   const { data, isFetching } = useGetCryptosQuery(count);
   const [cryptos, setCryptos] = useState<T[]>(data?.data?.coins);
-  if (isFetching) return <div>Loading ...</div>;
+  if (isFetching && isLoading) return <Spin size='large' className='loader' />; 
   return (
     <>
       <Row gutter={[32, 32]} className='crypto-card-container'>
