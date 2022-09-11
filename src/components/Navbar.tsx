@@ -10,7 +10,29 @@ import {
 } from '@ant-design/icons';
 
 type Props = {};
-
+//new meneItems to display children for antd design
+const menuItems = [
+  {
+    label: <Link to='/'>Home</Link>,
+    key: 'home',
+    icon: <HomeOutlined />,
+  },
+  {
+    label: <Link to='/cryptocurrencies'>Cryptocurrencies</Link>,
+    key: 'Cryptocurrencies',
+    icon: <FundOutlined />,
+  },
+  {
+    label: <Link to='/exchanges'>Exchanges</Link>,
+    key: 'exchanges',
+    icon: <MoneyCollectOutlined />,
+  },
+  {
+    label: <Link to='/news'>News</Link>,
+    key: 'news',
+    icon: <BulbOutlined />,
+  },
+];
 const Navbar = (props: Props) => {
   const icon = require('../images/cryptocurrency.png'); //use require here because of typescript and images module.
   return (
@@ -21,20 +43,7 @@ const Navbar = (props: Props) => {
           <Link to='/'>Cryptoverse</Link>
         </Typography.Title>
       </div>
-      <Menu theme='dark'>
-        <Menu.Item key={'home'} icon={<HomeOutlined />}>
-          <Link to='/'>Home</Link>
-        </Menu.Item>
-        <Menu.Item key={'cryptocurrencies'} icon={<FundOutlined />}>
-          <Link to='/cryptocurrencies'>Cryptocurrencies</Link>
-        </Menu.Item>
-        <Menu.Item key={'exchanges'} icon={<MoneyCollectOutlined />}>
-          <Link to='/exchanges'>Exchanges</Link>
-        </Menu.Item>
-        <Menu.Item key={'news'} icon={<BulbOutlined />}>
-          <Link to='/news'>News</Link>
-        </Menu.Item>
-      </Menu>
+      <Menu theme='dark' items={menuItems} />
     </div>
   );
 };
