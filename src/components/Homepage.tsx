@@ -70,7 +70,7 @@ const Homepage = (props: Props) => {
             <Link to='/news'>Show more</Link>
           </Title>
         </div>
-        <News />
+        <News simplified />
       </div>
     </>
   );

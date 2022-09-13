@@ -9,7 +9,7 @@ type T = {
   [key: string]: number | string;
 };
 
-interface TCrypto extends T {
+export interface TCrypto extends T {
   name: string;
 }
 
