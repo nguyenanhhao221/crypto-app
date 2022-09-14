@@ -38,7 +38,7 @@ const Navbar = (props: Props) => {
   return (
     <div className='nav-container'>
       <div className='logo-container'>
-        <Avatar src={icon} size='large' />
+        <Avatar src={icon} size='large' alt='logo' />
         <Typography.Title level={2} className='Logo'>
           <Link to='/'>Cryptoverse</Link>
         </Typography.Title>

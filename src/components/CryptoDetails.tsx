@@ -180,7 +180,7 @@ const CryptoDetail = (props: Props) => {
           </Title>
           {cryptoDetail.links.map(
             (link: { name: string; url: string; type: string }) => (
-              <Row className='coin-link' key={link.name}>
+              <Row className='coin-link' key={link.url}>
                 <Title level={5} className='link-name'>
                   {link.type}
                 </Title>
