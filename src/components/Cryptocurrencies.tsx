@@ -56,7 +56,14 @@ const Cryptocurrencies = ({ simplified }: Props) => {
 
       <Row gutter={[32, 32]} className='crypto-card-container'>
         {cryptos?.map((currency) => (
-          <Col key={currency.uuid} className='crypto-card'>
+          <Col
+            lg={4}
+            md={6}
+            sm={12}
+            xs={24}
+            key={currency.uuid}
+            className='crypto-card'
+          >
             <Link to={`/crypto/${currency.uuid}`}>
               <Card
                 title={`${currency.rank} . ${currency.name}`}
