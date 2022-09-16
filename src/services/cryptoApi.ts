@@ -24,8 +24,15 @@ export const cryptoApi = createApi({
     }),
     // Api call to get info about specific coin with coin id
     getCryptoDetail: builder.query({
-      query: ({ coinId, timePeriod }) => ({
+      query: ({ coinId }) => ({
         url: `${baseUrl}/coin/${coinId}`,
+        headers: cryptoApiHeaders,
+      }),
+    }),
+    //Get crypto history base on id
+    getCryptoHistory: builder.query({
+      query: ({ coinId, timePeriod }) => ({
+        url: `${baseUrl}/coin/${coinId}/history`,
         headers: cryptoApiHeaders,
         params: {
           timePeriod,
@@ -35,4 +42,8 @@ export const cryptoApi = createApi({
   }),
 });
 //RTK will automatically generate these hook to refer to our call based on the name we given in the builder method
-export const { useGetCryptosQuery, useGetCryptoDetailQuery } = cryptoApi;
+export const {
+  useGetCryptosQuery,
+  useGetCryptoDetailQuery,
+  useGetCryptoHistoryQuery,
+} = cryptoApi;

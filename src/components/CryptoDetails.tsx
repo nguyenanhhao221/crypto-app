@@ -14,7 +14,11 @@ import HTMLReactParser from 'html-react-parser';
 import millify from 'millify';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetCryptoDetailQuery } from '../services/cryptoApi';
+import {
+  useGetCryptoDetailQuery,
+  useGetCryptoHistoryQuery,
+} from '../services/cryptoApi';
+import LineChart from './LineChart';
 
 type Props = {};
 type TStat = {
@@ -29,15 +33,18 @@ const CryptoDetail = (props: Props) => {
   const { coinId } = useParams();
   const [timePeriod, setTimePeriod] = useState('7d');
 
-  const { data, isFetching } = useGetCryptoDetailQuery({
+  const { data, isFetching: isFetchDetail } = useGetCryptoDetailQuery({
     coinId,
-    timePeriod,
   });
-  if (isFetching) return <Spin size='large' className='loader' />;
+  const { data: coinHistory, isFetching: isFetchHistory } =
+    useGetCryptoHistoryQuery({ coinId, timePeriod });
+  //TODO double check valid fetch load
+  if (isFetchDetail || isFetchHistory)
+    return <Spin size='large' className='loader' />;
 
   const cryptoDetail = data?.data?.coin; //Detail about the crypto return by API
   //the Time period to be selected
-  const time = ['24h', '7d', '30d'];
+  const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
   //The main stat to be displayed
   const stats: TStat[] = [
     {
@@ -121,8 +128,9 @@ const CryptoDetail = (props: Props) => {
       </Col>
       <Select
         className='select-timeperiod'
-        placeholder='Select Time Period'
+        placeholder='Select Timeperiod'
         onChange={(value) => setTimePeriod(value)}
+        defaultValue={timePeriod}
       >
         {time.map((eachTimePeriod, index) => (
           <Option key={index} value={eachTimePeriod}>
@@ -131,6 +139,11 @@ const CryptoDetail = (props: Props) => {
         ))}
       </Select>
       {/* Line chart */}
+      <LineChart
+        coinName={cryptoDetail?.name}
+        currentPrice={cryptoDetail?.price}
+        coinHistory={coinHistory}
+      />
       <Col className='stats-container'>
         <Col className='coin-value-statistics' span={12}>
           <Col className='coin-value-statistics-heading'>
