@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import { Layout, Typography, Space } from 'antd';
@@ -9,16 +9,42 @@ import News from './components/News';
 import Cryptocurrencies from './components/Cryptocurrencies';
 import CryptoDetails from './components/CryptoDetails';
 
+const { Footer, Content, Sider } = Layout;
+
 const App = () => {
+  const [collapse, setCollapse] = useState(false);
   return (
-    <BrowserRouter>
-      <div className='app'>
-        <div className='navbar'>
-          <Navbar />
-        </div>
-        <div className='main'>
+    <>
+      <BrowserRouter>
+        <Layout>
+          <Sider
+            style={{
+              minHeight: '100vh',
+              position: 'fixed',
+              left: 0,
+              top: 0,
+              bottom: 0,
+              overflow: 'auto',
+            }}
+            width={232}
+            collapsible
+            breakpoint='md'
+            collapsedWidth={80}
+            onCollapse={(isCollapse) => setCollapse(isCollapse)}
+          >
+            <Navbar collapse={collapse} />
+          </Sider>
           <Layout>
-            <div className='routes'>
+            <Content
+              style={{
+                padding: '1.5rem',
+                marginLeft: `${collapse ? `80px` : `232px`}`,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '2rem',
+                minHeight: '90vh',
+              }}
+            >
               <Routes>
                 <Route path='/' element={<Homepage />} />
                 <Route path='/exchanges' element={<Exchanges />} />
@@ -29,25 +55,25 @@ const App = () => {
                 <Route path='/crypto/:coinId' element={<CryptoDetails />} />
                 <Route path='/news' element={<News simplified={false} />} />
               </Routes>
-            </div>
+            </Content>
+            <Footer className='footer' style={{ backgroundColor: '#001529' }}>
+              <Typography.Title
+                level={5}
+                style={{ color: 'white', textAlign: 'center' }}
+              >
+                Cryptoverse <br />
+                All rights reserved.
+              </Typography.Title>
+              <Space>
+                <Link to='/'>Home</Link>
+                <Link to='/exchanges'>Exchanges</Link>
+                <Link to='/news'>News</Link>
+              </Space>
+            </Footer>
           </Layout>
-          <div className='footer'>
-            <Typography.Title
-              level={5}
-              style={{ color: 'white', textAlign: 'center' }}
-            >
-              Cryptoverse <br />
-              All rights reserved.
-            </Typography.Title>
-            <Space>
-              <Link to='/'>Home</Link>
-              <Link to='/exchanges'>Exchanges</Link>
-              <Link to='/news'>News</Link>
-            </Space>
-          </div>
-        </div>
-      </div>
-    </BrowserRouter>
+        </Layout>
+      </BrowserRouter>
+    </>
   );
 };
 

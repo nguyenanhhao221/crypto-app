@@ -10,7 +10,7 @@ const { Option } = Select;
 //Demo image used incase the API doesn't provide any display image
 const demoImage =
   'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News';
-
+const { Meta } = Card;
 type Props = {
   simplified: boolean;
 };
@@ -53,6 +53,7 @@ const News = ({ simplified }: Props) => {
         <Col span={24}>
           <Select
             showSearch
+            allowClear
             placeholder='Search Crypto Topics'
             onChange={(value) => setNewCategory(value)}
             optionFilterProp='children' //which props of the Option to be used when filter, the children props is equal to the string between the <Option> </Option>
@@ -81,8 +82,12 @@ const News = ({ simplified }: Props) => {
       {/* Display article about crypto */}
       {cryptoNews?.value.map((news: TNews, i: number) => (
         <Col xs={24} sm={12} lg={8} key={i}>
-          <Card hoverable className='news-card'>
-            <a href={news.url} target='_blank' rel='noreferrer'>
+          <a href={news.url} target='_blank' rel='noreferrer'>
+            <Card
+              hoverable
+              className='news-card'
+              style={{ minHeight: '450px', maxHeight: 'min-content' }}
+            >
               <div className='news-image-container'>
                 <Title className='news-title' level={4}>
                   {news.name}
@@ -96,29 +101,34 @@ const News = ({ simplified }: Props) => {
               {/* If the length of the description is more than 100 word, display only the first 100 words */}
               <p className='news-description'>
                 {news.description.length > 100
-                  ? `${news.description.substring(0, 100)} ...`
+                  ? `${news.description.split(' ').splice(0, 100).join(' ')} `
                   : news.description}
               </p>
-              <div className='provider-container'>
-                <div>
+              <Meta
+                title={
+                  <Text className='provider-name'>
+                    {news.provider[0]?.name}
+                  </Text>
+                }
+                avatar={
                   <Avatar
                     src={
                       news.provider[0]?.image?.thumbnail?.contentUrl ||
                       demoImage
                     }
                     alt={`${news.provider[0]?.name} logo`}
+                    style={{ marginLeft: '0.5rem' }}
                   ></Avatar>
-                  <Text className='provider-name'>
-                    {news.provider[0]?.name}
+                }
+                description={
+                  <Text>
+                    {/* Moment is used to display how long ago from the date published */}
+                    {moment(news.datePublished).startOf('seconds').fromNow()}
                   </Text>
-                </div>
-                <Text>
-                  {/* Moment is used to display how long ago from the date published */}
-                  {moment(news.datePublished).startOf('seconds').fromNow()}
-                </Text>
-              </div>
-            </a>
-          </Card>
+                }
+              />
+            </Card>
+          </a>
         </Col>
       ))}
     </Row>

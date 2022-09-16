@@ -2,7 +2,7 @@
   --text-primary: #000;
   --bgPrimary: #fff;
   --bgSecondary: #f9f9f9;
-  --pink: #0071bd;
+  --blue: #0071bd;
   --light-blue: #e6f7ff;
   --border: #d9d9d9;
 }
@@ -14,60 +14,14 @@
 }
 
 a:hover {
-  color: var(--pink) !important;
-}
-
-.app {
-  display: flex;
-  overflow: hidden;
-}
-
-.navbar {
-  flex: 0.2;
-  background-color: rgb(0, 21, 41);
-}
-
-.main {
-  flex: 0.8;
-  width: 100%;
-}
-.routes {
-  padding: 20px;
-}
-.nav-container {
-  position: fixed;
-  left: 0;
-  margin: 10px;
-  height: 100vh;
-  margin: 0px;
-  background-color: rgb(0, 21, 41);
+  color: var(--blue) !important;
 }
 
 .logo-container {
-  background-color: #001529;
   display: flex;
-  padding: 20px;
+  justify-content: space-around;
   align-items: center;
-  width: 100%;
-  gap: 0.5rem;
-}
-.logo-container h2 {
-  margin-bottom: 0 !important;
-}
-.logo {
-  margin: 0 0 0 15px;
-}
-.logo a {
-  color: white;
-}
-.menu-control-container {
-  display: none !important;
-  position: absolute !important;
-  right: 10px !important;
-  top: 25px !important;
-  font-size: 1.2rem !important;
-  background-color: var(--bgSecondary) !important;
-  border: none !important;
+  padding: 0.5rem 0;
 }
 
 .loader {
@@ -76,58 +30,16 @@ a:hover {
   justify-content: center;
   align-items: center;
 }
-
-@media screen and (max-width: 1300px) {
-  .main {
-    margin-left: 50px;
-  }
+.home-heading-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
 }
-
-@media screen and (max-width: 1170px) {
-  .main {
-    margin-left: 50px;
-  }
+.crypto-card {
+  min-width: 250px;
 }
-
-@media screen and (max-width: 1000px) {
-  .main {
-    margin-left: 100px;
-  }
-}
-
 @media screen and (max-width: 800px) {
-  .app {
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .navbar {
-    flex: 1;
-  }
-
-  .main {
-    flex: 1;
-    margin-top: 90px;
-    margin-left: 0px;
-    margin-right: 10px;
-  }
-
-  .nav-container {
-    height: 8vh;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    background-color: var(--bgSecondary);
-  }
-
-  .menu-control-container {
-    display: block !important;
-  }
-
-  .ant-menu {
-    position: absolute;
-    right: 0px;
-  }
   .home-title {
     font-size: 1.4rem !important;
   }
@@ -153,7 +65,7 @@ a:hover {
 
 .coin-heading-container .coin-name {
   font-weight: 900;
-  color: var(--pink);
+  color: var(--blue);
 }
 
 .coin-heading-container p {
@@ -173,13 +85,48 @@ a:hover {
   font-weight: 700;
   font-size: 1.4rem;
   margin-top: 20px;
-  color: var(--pink);
+  color: var(--blue);
+}
+.news-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.news-card > .ant-card-body {
+  gap: 0.3rem;
+}
+.news-card > .ant-card-body > .ant-card-meta {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ant-card-body {
+  display: flex;
+  flex-direction: column;
+}
+.news-image-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.news-image {
+  width: 100%;
+  display: block;
+  flex-basis: 150px;
+  height: 150px;
+}
+
+.provider-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .coin-details-heading {
   font-weight: 700 !important;
   margin-top: 20px !important;
-  color: var(--pink) !important;
+  color: var(--blue) !important;
 }
 
 .coin-stats {
@@ -215,7 +162,7 @@ a:hover {
 
 .coin-desc-link h2 {
   font-weight: 700;
-  color: var(--pink);
+  color: var(--blue);
 }
 
 .coin-desc-link p {
@@ -224,7 +171,7 @@ a:hover {
 }
 
 .coin-desc-link a {
-  color: var(--pink);
+  color: var(--blue);
 }
 
 .coin-desc-link h3 {
@@ -254,7 +201,7 @@ a:hover {
 }
 
 .coin-link a {
-  color: var(--pink);
+  color: var(--blue);
   font-weight: 700;
   font-size: 1rem;
 }
@@ -292,34 +239,6 @@ a:hover {
 
 .select-news {
   width: 180px;
-}
-.news-card {
-  min-height: 300px !important;
-}
-.news-image-container {
-  display: flex !important;
-  justify-content: space-between !important;
-}
-.news-title {
-  width: 70%;
-}
-
-.news-image-container img {
-  width: 100px;
-  height: 100px;
-  max-width: 200px;
-  max-height: 100px;
-}
-.news-card p {
-  color: black;
-  margin: 10px 0px !important;
-}
-.provider-container {
-  display: flex;
-  justify-content: space-between;
-}
-.provider-name {
-  margin-left: 10px;
 }
 
 .chart-header {

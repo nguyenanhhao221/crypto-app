@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Row, Col, Input, Spin } from 'antd';
+import { Card, Row, Col, Input, Spin, Avatar } from 'antd';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Link } from 'react-router-dom';
 import millify from 'millify';
@@ -57,7 +57,7 @@ const Cryptocurrencies = ({ simplified }: Props) => {
       <Row gutter={[32, 32]} className='crypto-card-container'>
         {cryptos?.map((currency) => (
           <Col
-            xxl={24 / 8}
+            xxl={24 / 6}
             xl={24 / 4}
             lg={24 / 3}
             md={24 / 2}
@@ -66,13 +66,12 @@ const Cryptocurrencies = ({ simplified }: Props) => {
           >
             <Link to={`/crypto/${currency.uuid}`}>
               <Card
-                title={`${currency.rank} . ${currency.name}`}
                 hoverable
+                title={`${currency.rank} . ${currency.name}`}
                 extra={
-                  <img
+                  <Avatar
                     src={`${currency.iconUrl}`}
                     alt={`${currency.name} icon`}
-                    className='crypto-image'
                   />
                 }
               >

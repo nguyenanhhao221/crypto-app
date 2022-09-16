@@ -45,9 +45,6 @@ const LineChart = ({ coinName, currentPrice, coinHistory }: Props) => {
     },
     options: {
       indexAxis: 'x',
-      scales: {
-        y: { beginAtZero: true },
-      },
       responsive: true,
     },
   };

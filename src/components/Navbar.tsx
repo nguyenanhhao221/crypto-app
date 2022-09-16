@@ -9,7 +9,7 @@ import {
   MenuOutlined,
 } from '@ant-design/icons';
 
-type Props = {};
+type Props = { collapse: boolean };
 //new meneItems to display children for antd design
 const menuItems = [
   {
@@ -33,18 +33,22 @@ const menuItems = [
     icon: <BulbOutlined />,
   },
 ];
-const Navbar = (props: Props) => {
+const Navbar = ({ collapse }: Props) => {
   const icon = require('../images/cryptocurrency.png'); //use require here because of typescript and images module.
   return (
-    <div className='nav-container'>
+    <>
       <div className='logo-container'>
         <Avatar src={icon} size='large' alt='logo' />
-        <Typography.Title level={2} className='Logo'>
+        <Typography.Title
+          level={2}
+          className='Logo'
+          style={{ marginBottom: 0, display: `${collapse ? `none` : `block`}` }}
+        >
           <Link to='/'>Cryptoverse</Link>
         </Typography.Title>
       </div>
-      <Menu theme='dark' items={menuItems} />
-    </div>
+      <Menu theme='dark' items={menuItems} defaultSelectedKeys={['home']} />
+    </>
   );
 };
 
