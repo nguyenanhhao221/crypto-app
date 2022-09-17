@@ -231,11 +231,11 @@ a:hover {
     margin: 0;
   }
 }
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
   .heading {
     margin-top: 20px;
   }
-}
+} */
 
 .select-news {
   width: 180px;
@@ -263,12 +263,7 @@ a:hover {
   margin-top: 0px !important;
   font-weight: 900 !important;
 }
-.home-heading-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 40px;
-}
+
 .show-more {
   margin-top: 0px !important;
 }

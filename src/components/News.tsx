@@ -9,7 +9,7 @@ const { Option } = Select;
 
 //Demo image used incase the API doesn't provide any display image
 const demoImage =
-  'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News';
+  'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News'; //TODO: FIX
 const { Meta } = Card;
 type Props = {
   simplified: boolean;

@@ -20,32 +20,36 @@ const Homepage = (props: Props) => {
         <Title level={2} className='heading'>
           Global Crypto Stats
         </Title>
-        <Row>
-          <Col span={12}>
+        <Row justify='space-between'>
+          <Col sm={12} xs={24}>
             <Statistic
               title='Total Cryptocurrencies'
               value={globalStats.totalCoins}
             />
           </Col>
-          <Col span={12}>
+          <Col sm={12} xs={24}>
             <Statistic
               title='Total Exchanges'
               value={globalStats.totalExchanges}
             />
           </Col>
-          <Col span={12}>
+        </Row>
+        <Row justify='space-between'>
+          <Col sm={12} xs={24}>
             <Statistic
               title='Total Market Cap'
               value={millify(globalStats.totalMarketCap)}
             />
           </Col>
-          <Col span={12}>
+          <Col sm={12} xs={24}>
             <Statistic
               title='Total 24h Volume'
               value={millify(globalStats.total24hVolume)}
             />
           </Col>
-          <Col span={12}>
+        </Row>
+        <Row justify='space-between'>
+          <Col sm={12} xs={24}>
             <Statistic title='Total Market' value={globalStats.totalMarkets} />
           </Col>
         </Row>

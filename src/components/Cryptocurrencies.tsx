@@ -57,10 +57,11 @@ const Cryptocurrencies = ({ simplified }: Props) => {
       <Row gutter={[32, 32]} className='crypto-card-container'>
         {cryptos?.map((currency) => (
           <Col
-            xxl={24 / 6}
-            xl={24 / 4}
+            xs={24}
+            sm={24 / 2}
             lg={24 / 3}
-            md={24 / 2}
+            xl={24 / 4}
+            xxl={24 / 6}
             key={currency.uuid}
             className='crypto-card'
           >
