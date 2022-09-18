@@ -1,16 +1,11 @@
-import { Select, Typography, Row, Col, Avatar, Card, Spin } from 'antd';
-import moment from 'moment';
+import { Select, Row, Col, Spin } from 'antd';
 import { useState } from 'react';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { useGetCryptosNewsQuery } from '../services/cryptoNewsApi';
 import { TCrypto } from '../components/Cryptocurrencies';
-const { Text, Title } = Typography;
+import NewsCard from './NewsCard';
 const { Option } = Select;
 
-//Demo image used incase the API doesn't provide any display image
-const demoImage =
-  'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News'; //TODO: FIX
-const { Meta } = Card;
 type Props = {
   simplified: boolean;
 };
@@ -21,6 +16,7 @@ type TNewsImage = {
     thumbnail: {
       contentUrl: string;
     };
+    contentUrl: string;
   };
   name?: string;
 };
@@ -36,7 +32,7 @@ interface TNews extends TNewsImage {
 const News = ({ simplified }: Props) => {
   const [newCategory, setNewCategory] = useState('Cryptocurrencies');
   //Call the cryptoNewsApi
-  const { data: cryptoNews } = useGetCryptosNewsQuery({
+  const { data: cryptoNews, isFetching } = useGetCryptosNewsQuery({
     newCategory: newCategory,
     count: simplified ? 6 : 12, //if in simplified mode display 6 news article only
   });
@@ -81,54 +77,17 @@ const News = ({ simplified }: Props) => {
 
       {/* Display article about crypto */}
       {cryptoNews?.value.map((news: TNews, i: number) => (
-        <Col xs={24} sm={12} lg={8} key={i}>
-          <a href={news.url} target='_blank' rel='noreferrer'>
-            <Card
-              hoverable
-              className='news-card'
-              style={{ minHeight: '450px', maxHeight: 'min-content' }}
-            >
-              <div className='news-image-container'>
-                <Title className='news-title' level={4}>
-                  {news.name}
-                </Title>
-                <img
-                  src={news?.image?.thumbnail?.contentUrl || demoImage}
-                  alt={'news'}
-                  className='news-image'
-                />
-              </div>
-              {/* If the length of the description is more than 100 word, display only the first 100 words */}
-              <p className='news-description'>
-                {news.description.length > 100
-                  ? `${news.description.split(' ').splice(0, 100).join(' ')} `
-                  : news.description}
-              </p>
-              <Meta
-                title={
-                  <Text className='provider-name'>
-                    {news.provider[0]?.name}
-                  </Text>
-                }
-                avatar={
-                  <Avatar
-                    src={
-                      news.provider[0]?.image?.thumbnail?.contentUrl ||
-                      demoImage
-                    }
-                    alt={`${news.provider[0]?.name} logo`}
-                    style={{ marginLeft: '0.5rem' }}
-                  ></Avatar>
-                }
-                description={
-                  <Text>
-                    {/* Moment is used to display how long ago from the date published */}
-                    {moment(news.datePublished).startOf('seconds').fromNow()}
-                  </Text>
-                }
-              />
-            </Card>
-          </a>
+        <Col key={i} xs={24} lg={24 / 2} xxl={24 / 3}>
+          <NewsCard
+            newsUrl={news.url}
+            newsName={news.name}
+            newsImg={news?.image?.contentUrl}
+            newsDescription={news.description}
+            providerName={news.provider[0].name}
+            providerImg={news.provider[0]?.image?.thumbnail?.contentUrl}
+            datePublished={news.datePublished}
+            isFetching={isFetching}
+          />
         </Col>
       ))}
     </Row>
