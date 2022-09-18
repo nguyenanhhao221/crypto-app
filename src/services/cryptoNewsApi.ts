@@ -23,6 +23,7 @@ export const cryptoNewsApi = createApi({
           safeSearch: 'off',
           textFormat: 'Raw',
           freshness: 'Day',
+          originalImg: true,
         },
       }),
     }),
