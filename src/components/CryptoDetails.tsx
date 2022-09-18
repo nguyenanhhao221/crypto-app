@@ -29,6 +29,7 @@ type TStat = {
 
 const { Title, Text } = Typography;
 const { Option } = Select;
+//TODO : Display 2 decimal for Current Price
 const CryptoDetail = (props: Props) => {
   const { coinId } = useParams();
   const [timePeriod, setTimePeriod] = useState('7d');
