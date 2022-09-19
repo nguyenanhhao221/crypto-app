@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Row, Col, Input, Spin, Avatar } from 'antd';
+import { useEffect, useState } from 'react';
+import { Card, Row, Col, Input, Spin, Avatar, Statistic } from 'antd';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Link } from 'react-router-dom';
 import millify from 'millify';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 type Props = { simplified: boolean };
 type T = {
   [key: string]: number | string;
+  price: number;
+  marketCap: number;
+  change: number;
 };
 
 export interface TCrypto extends T {
@@ -76,9 +80,33 @@ const Cryptocurrencies = ({ simplified }: Props) => {
                   />
                 }
               >
-                <p>Price: {millify(currency.price as number)}</p>
-                <p>Market Cap: {millify(currency.marketCap as number)}</p>
-                <p>Daily Change: {millify(currency.change as number)}%</p>
+                <Statistic
+                  value={millify(currency.price)}
+                  title='Price'
+                  prefix='$'
+                ></Statistic>
+                <Statistic
+                  value={millify(currency.marketCap)}
+                  title='Market Cap'
+                  prefix='$'
+                ></Statistic>
+                {currency?.change >= 0 ? (
+                  <Statistic
+                    value={currency.change}
+                    prefix={<CaretUpOutlined />}
+                    suffix={'%'}
+                    title='Daily Change'
+                    valueStyle={{ color: '#1dd15a', display: 'inline' }}
+                  ></Statistic>
+                ) : (
+                  <Statistic
+                    value={currency.change * -1}
+                    prefix={<CaretDownOutlined />}
+                    suffix={'%'}
+                    title='Daily Change'
+                    valueStyle={{ color: '#ef5959', display: 'inline' }}
+                  ></Statistic>
+                )}
               </Card>
             </Link>
           </Col>
