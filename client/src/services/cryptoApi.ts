@@ -1,12 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-//TODO: replace with env
-const cryptoApiHeaders = {
-  'X-RapidAPI-Key': '673572aedemsh6d3ab43d052735ap17d24bjsne5f46619407b',
-  'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
-};
-
-const baseUrl = 'https://coinranking1.p.rapidapi.com';
+const baseUrl = 'http://localhost:8000';
 
 //Create Api take an object with the following
 export const cryptoApi = createApi({
@@ -16,24 +10,21 @@ export const cryptoApi = createApi({
   endpoints: (builder) => ({
     //Example of GET request, the query need to be a function which return an object contain the final API endpoint and related options to be called
     getCryptos: builder.query({
-      query: (count: number = 10) => ({
-        url: `${baseUrl}/coins`,
+      query: (count: number) => ({
+        url: `${baseUrl}/get-crypto`,
         params: { limit: count },
-        headers: cryptoApiHeaders,
       }),
     }),
     // Api call to get info about specific coin with coin id
     getCryptoDetail: builder.query({
       query: ({ coinId }) => ({
         url: `${baseUrl}/coin/${coinId}`,
-        headers: cryptoApiHeaders,
       }),
     }),
     //Get crypto history base on id
     getCryptoHistory: builder.query({
       query: ({ coinId, timePeriod }) => ({
         url: `${baseUrl}/coin/${coinId}/history`,
-        headers: cryptoApiHeaders,
         params: {
           timePeriod,
         },
