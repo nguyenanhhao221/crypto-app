@@ -10,7 +10,7 @@ import Cryptocurrencies from './components/Cryptocurrencies';
 import CryptoDetails from './components/CryptoDetails';
 
 const { Footer, Content, Sider } = Layout;
-
+//TODO: Make error page for invalid route
 const App = () => {
   const [collapse, setCollapse] = useState(false);
   return (
