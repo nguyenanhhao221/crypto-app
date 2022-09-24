@@ -7,11 +7,10 @@ const getCryptoRouter = express.Router();
 
 //Make sure the API key in env is valid
 const apiKey = process.env.X_RAPIDAPI_KEY;
-if (!apiKey) {
+if (typeof apiKey === 'undefined') {
   throw new Error('Invalid api key in env file');
 }
-const cryptoApiHeaders: AxiosRequestHeaders = {
-  'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY as unknown as string,
+  'X-RapidAPI-Key': apiKey,
   'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
 };
 
