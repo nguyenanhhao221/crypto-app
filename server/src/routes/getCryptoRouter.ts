@@ -33,21 +33,35 @@ getCryptoRouter.get('/', async (req, res, next) => {
   }
 });
 //Coin ranking API to get detail for a coin base on id
-
 getCryptoRouter.get('/:coinId', async (req, res, next) => {
   const options: AxiosRequestConfig = {
     method: 'GET',
-    url: `https://coinranking1.p.rapidapi.com/coins/${req.params.coinId}`,
+    url: `https://coinranking1.p.rapidapi.com/coin/${req.params.coinId}`,
     headers: coinRankingHeader,
   };
   try {
     const response = await axios.request(options);
-    res.status(200).json(response);
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+//Coin ranking API to get coin history
+getCryptoRouter.get('/:coinId/history', async (req, res, next) => {
+  const options: AxiosRequestConfig = {
+    method: 'GET',
+    url: `https://coinranking1.p.rapidapi.com/coin/${req.params.coinId}/history`,
+    headers: coinRankingHeader,
+    params: req.query,
+  };
+  try {
+    const response = await axios.request(options);
+    res.status(200).json(response.data);
   } catch (error) {
     console.error(error);
     next(error);
   }
 });
 //CoinGecko API to get Exchanges data
-
 export default getCryptoRouter;

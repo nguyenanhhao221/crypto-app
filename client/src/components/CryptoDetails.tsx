@@ -41,7 +41,7 @@ const CryptoDetail = (props: Props) => {
     useGetCryptoHistoryQuery({ coinId, timePeriod });
   //TODO double check valid fetch load
   if (isFetchDetail || isFetchHistory)
-    return <Spin size='large' className='loader' />;
+    return <Spin size="large" className="loader" />;
 
   const cryptoDetail = data?.data?.coin; //Detail about the crypto return by API
   //the Time period to be selected
@@ -50,7 +50,7 @@ const CryptoDetail = (props: Props) => {
   const stats: TStat[] = [
     {
       title: 'Price to USD',
-      value: `$ ${cryptoDetail.price && millify(cryptoDetail.price)}`,
+      value: `$ ${cryptoDetail?.price && millify(cryptoDetail?.price)}`,
       icon: <DollarOutlined />,
     },
     {
@@ -73,8 +73,8 @@ const CryptoDetail = (props: Props) => {
     {
       title: 'All Time Hight (Daily.AVG)',
       value: `$ ${
-        cryptoDetail.allTimeHigh.price &&
-        millify(cryptoDetail.allTimeHigh.price)
+        cryptoDetail?.allTimeHigh?.price &&
+        millify(cryptoDetail?.allTimeHigh?.price)
       }`,
       icon: <TrophyOutlined />,
     },
@@ -117,9 +117,9 @@ const CryptoDetail = (props: Props) => {
     },
   ];
   return (
-    <Col className='coin-detail-container'>
-      <Col className='coin-heading-container'>
-        <Title level={2} className='coin-name'>
+    <Col className="coin-detail-container">
+      <Col className="coin-heading-container">
+        <Title level={2} className="coin-name">
           {cryptoDetail.name} Price
         </Title>
         <p>
@@ -128,8 +128,8 @@ const CryptoDetail = (props: Props) => {
         </p>
       </Col>
       <Select
-        className='select-timeperiod'
-        placeholder='Select Timeperiod'
+        className="select-timeperiod"
+        placeholder="Select Timeperiod"
         onChange={(value) => setTimePeriod(value)}
         defaultValue={timePeriod}
       >
@@ -145,60 +145,60 @@ const CryptoDetail = (props: Props) => {
         currentPrice={cryptoDetail?.price}
         coinHistory={coinHistory}
       />
-      <Col className='stats-container'>
-        <Col className='coin-value-statistics' span={12}>
-          <Col className='coin-value-statistics-heading'>
-            <Title level={3} className='coin-details-heading'>
+      <Col className="stats-container">
+        <Col className="coin-value-statistics" span={12}>
+          <Col className="coin-value-statistics-heading">
+            <Title level={3} className="coin-details-heading">
               {cryptoDetail.name} Value Statistics
             </Title>
             <p>An overview showing the stats of {cryptoDetail.name}</p>
           </Col>
           {stats.map(({ title, icon, value }) => (
-            <Col className='coin-stats' key={title}>
-              <Col className='coin-stats-name'>
+            <Col className="coin-stats" key={title}>
+              <Col className="coin-stats-name">
                 <Text>{icon}</Text>
                 <Text>{title}</Text>
               </Col>
-              <Text className='stats'>{value}</Text>
+              <Text className="stats">{value}</Text>
             </Col>
           ))}
         </Col>
-        <Col className='other-stats-info' span={12}>
-          <Col className='coin-value-statistics-heading'>
-            <Title level={3} className='coin-details-heading'>
+        <Col className="other-stats-info" span={12}>
+          <Col className="coin-value-statistics-heading">
+            <Title level={3} className="coin-details-heading">
               Other Stats Info
             </Title>
             <p>Other stats related to {cryptoDetail.name}</p>
           </Col>
           {otherStats.map(({ title, icon, value }) => (
-            <Col className='coin-stats' key={title}>
-              <Col className='coin-stats-name'>
+            <Col className="coin-stats" key={title}>
+              <Col className="coin-stats-name">
                 <Text>{icon}</Text>
                 <Text>{title}</Text>
               </Col>
-              <Text className='stats'>{value}</Text>
+              <Text className="stats">{value}</Text>
             </Col>
           ))}
         </Col>
       </Col>
-      <Col className='coin-desc-link'>
-        <Row className='coin-desc'>
-          <div className='coin-details-heading'>
+      <Col className="coin-desc-link">
+        <Row className="coin-desc">
+          <div className="coin-details-heading">
             <Title level={2}>What is {cryptoDetail.name} ?</Title>
             {HTMLReactParser(cryptoDetail.description as string)}
           </div>
         </Row>
-        <Col className='coin-links'>
-          <Title level={2} className='coin-details-heading'>
+        <Col className="coin-links">
+          <Title level={2} className="coin-details-heading">
             {cryptoDetail.name} Links
           </Title>
           {cryptoDetail.links.map(
             (link: { name: string; url: string; type: string }) => (
-              <Row className='coin-link' key={link.url}>
-                <Title level={5} className='link-name'>
+              <Row className="coin-link" key={link.url}>
+                <Title level={5} className="link-name">
                   {link.type}
                 </Title>
-                <a href={link.url} target='_blank' rel='noreferrer'>
+                <a href={link.url} target="_blank" rel="noreferrer">
                   {link.name}
                 </a>
               </Row>
