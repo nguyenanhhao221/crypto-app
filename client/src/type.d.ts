@@ -13,3 +13,12 @@ export type TExchange = {
   url: string;
   year_established: number;
 };
+
+export interface TGloBalStats {
+  total: number;
+  totalCoins: number;
+  totalMarkets: number;
+  totalExchanges: number;
+  totalMarketCap: number | string;
+  total24hVolume: number | string;
+}
