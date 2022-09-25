@@ -6,7 +6,7 @@ dotenv.config();
 const getCryptoRouter = express.Router();
 
 //Make sure the API key in env is valid
-const apiKey = process.env.X_RAPIDAPI_KEY;
+export const apiKey = process.env.X_RAPIDAPI_KEY;
 if (typeof apiKey === 'undefined') {
   throw new Error('Invalid api key in env file');
 }
@@ -63,5 +63,4 @@ getCryptoRouter.get('/:coinId/history', async (req, res, next) => {
     next(error);
   }
 });
-//CoinGecko API to get Exchanges data
 export default getCryptoRouter;
