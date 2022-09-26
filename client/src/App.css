@@ -309,6 +309,22 @@ a:hover {
   margin-top: 20px !important;
 }
 
+/* Exchanges page */
+/* .exchange-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} */
+.exchanges-headers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.process-container {
+  display: flex;
+}
+
 .footer {
   background-color: #001529;
   display: flex;

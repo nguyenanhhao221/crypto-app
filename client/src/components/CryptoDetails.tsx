@@ -144,6 +144,7 @@ const CryptoDetail = (props: Props) => {
         coinName={cryptoDetail?.name}
         currentPrice={cryptoDetail?.price}
         coinHistory={coinHistory}
+        simplified={false}
       />
       <Col className="stats-container">
         <Col className="coin-value-statistics" span={12}>

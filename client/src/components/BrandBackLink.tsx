@@ -13,7 +13,7 @@ const BrandBackLink = ({ brand: { logo, name, url } }: Props) => {
       target="_blank"
       rel="noreferrer noopener"
     >
-      Power by
+      <span>Powered by</span>
       <img className="refer-logo-brand" alt={`${name} Logo`} src={logo} />
     </Button>
   );
