@@ -17,7 +17,7 @@ const GlobalStats = ({ globalStats }: Props) => {
         </Title>
         <Button
           type="link"
-          title="Power by Coinranking"
+          title="Powered by Coinranking"
           href="https://coinranking.com"
           target="_blank"
         >
