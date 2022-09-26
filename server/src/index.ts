@@ -4,6 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import getCryptoRouter from './routes/getCryptoRouter';
 import getCryptoNewsRouter from './routes/getCryptoNewsRouter';
+import getCryptoExchangesRouter from './routes/getCryptoExchangesRouter';
 
 dotenv.config();
 
@@ -19,3 +20,4 @@ app.listen(PORT, () =>
 );
 app.use('/get-crypto', getCryptoRouter);
 app.use('/get-crypto-news', getCryptoNewsRouter);
+app.use('/exchanges', getCryptoExchangesRouter);
