@@ -1,6 +1,7 @@
 import millify from 'millify';
 import { Typography, Row, Col, Statistic, Card, Button } from 'antd';
-import { TGloBalStats } from '../type';
+import { TBrands, TGloBalStats } from '../type';
+import BrandBackLink from './BrandBackLink';
 const { Title } = Typography;
 
 type Props = {
@@ -8,26 +9,18 @@ type Props = {
 };
 
 const GlobalStats = ({ globalStats }: Props) => {
-  const coinRankingLogo = require('../images/coinranking-logo.png');
+  const coinRankingInfo: TBrands = {
+    logo: require('../images/coinranking-logo.png'),
+    name: 'Coin Ranking',
+    url: 'https://coinranking.com',
+  };
   return (
     <div className="global-stats">
       <div className="global-stats-heading-container">
         <Title level={2} className="heading">
           Global Crypto Stats
         </Title>
-        <Button
-          type="link"
-          title="Powered by Coinranking"
-          href="https://coinranking.com"
-          target="_blank"
-        >
-          Power by
-          <img
-            className="refer-logo-brand"
-            alt="Coin Ranking Logo"
-            src={coinRankingLogo}
-          />
-        </Button>
+        <BrandBackLink brand={coinRankingInfo} />
       </div>
       <Row gutter={[16, 16]}>
         <Col sm={12} xs={24}>
