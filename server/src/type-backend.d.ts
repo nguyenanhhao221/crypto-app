@@ -14,8 +14,9 @@ export type TExchange = {
   trust_score_rank: number;
   url: string;
   year_established: number;
+  volume_chart_7d?: TVolumeChart;
 };
-
+export type TVolumeChart = [[number, string]];
 interface TRequestAttachData extends Request {
   data?: TExchange[];
   exchangeIds?: string[];
