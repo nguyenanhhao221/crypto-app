@@ -67,6 +67,14 @@ a:hover {
   align-items: center;
   padding: 1rem 0;
 }
+
+.refer-logo-brand {
+  width: 150px;
+}
+.global-stats-heading-container {
+  display: flex;
+  align-items: center;
+}
 .crypto-card {
   min-width: 250px;
 }
@@ -299,6 +307,22 @@ a:hover {
 .select-timeperiod {
   width: 200px !important;
   margin-top: 20px !important;
+}
+
+/* Exchanges page */
+/* .exchange-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} */
+.exchanges-headers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.process-container {
+  display: flex;
 }
 
 .footer {

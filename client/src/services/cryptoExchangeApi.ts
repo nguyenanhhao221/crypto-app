@@ -7,7 +7,7 @@ const exchangesHeaders = {
   'X-RapidAPI-Host': 'coingecko.p.rapidapi.com',
 };
 
-const baseUrl = 'https://coingecko.p.rapidapi.com';
+const baseUrl = 'http://localhost:8000';
 
 export const cryptoExchangeApi = createApi({
   reducerPath: 'cryptoExchangeApi',
