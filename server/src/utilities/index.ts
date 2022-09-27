@@ -1,10 +1,5 @@
 import { TExchange } from '../type-backend';
 
-export const getExchangeIds = (
-  dataArr: TExchange[] | undefined
-): string[] | Error => {
-  if (typeof dataArr === 'undefined') {
-    return new Error('Data is undefined');
-  }
+export const getExchangeIds = (dataArr: TExchange[]): string[] => {
   return dataArr.map((exchange) => exchange.id);
 };

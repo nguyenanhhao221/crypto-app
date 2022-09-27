@@ -597,15 +597,13 @@ getCryptoExchangesRouter.get(
       if (response.status === 200) {
         //Attach data to next middleware
         req.data = response.data;
-
-        const exchangeIds = getExchangeIds(req.data);
-        if (typeof exchangeIds === typeof Error) {
-          return next(exchangeIds);
-        } else {
+        if (typeof req.data !== 'undefined') {
+          const exchangeIds = getExchangeIds(req.data);
           req.exchangeIds = exchangeIds; //Attach exchangeIds to next middleware
           next();
         }
       }
+      //TODO handle error cases
     } catch (error) {
       next(error); //TODO right error handler for express
     }
@@ -615,12 +613,6 @@ getCryptoExchangesRouter.get(
 //Third, get the id from each of the exchange, with that id array make another call to get the volume history to display to the chart later
 // getCryptoExchangesRouter.get('/', async (req, res, next) => {
 //   try {
-//     const response = await axios.get(
-//       'https://api.coingecko.com/api/v3/exchanges'
-//     );
-//     if (response.status === 200) {
-//       next();
-//     }
 //   } catch (error) {
 //     next(error);
 //   }

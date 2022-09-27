@@ -18,5 +18,5 @@ export type TExchange = {
 
 interface TRequestAttachData extends Request {
   data?: TExchange[];
-  exchangeIds?: string[] | Error;
+  exchangeIds?: string[];
 }
