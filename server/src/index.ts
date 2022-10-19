@@ -12,10 +12,8 @@ const app = express();
 
 app.use(cors());
 app.use(morgan('dev'));
-
-const PORT = 8000;
-
-app.use('/', express.static(path.join(__dirname, '/build')));
+const PORT = process.env.PORT || 8000;
+app.use(express.static(path.join(__dirname, '../build')));
 app.use('/get-crypto', getCryptoRouter);
 app.use('/get-crypto-news', getCryptoNewsRouter);
 app.use('/exchanges', getCryptoExchangesRouter);

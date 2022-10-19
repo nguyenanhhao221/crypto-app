@@ -39,7 +39,7 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use((0, morgan_1.default)('dev'));
 const PORT = 8000;
-app.use('/', express_1.default.static(path_1.default.join(__dirname, '../../client/build')));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../build')));
 app.use('/get-crypto', getCryptoRouter_1.default);
 app.use('/get-crypto-news', getCryptoNewsRouter_1.default);
 app.use('/exchanges', getCryptoExchangesRouter_1.default);
