@@ -15,12 +15,13 @@ app.use(morgan('dev'));
 
 const PORT = 8000;
 
-app.listen(PORT, () =>
-  console.log(`[server] Server is listening on PORT: ${PORT}`)
-);
 app.use('/', express.static(path.join(__dirname, '../../client/build')));
 app.use('/get-crypto', getCryptoRouter);
 app.use('/get-crypto-news', getCryptoNewsRouter);
 app.use('/exchanges', getCryptoExchangesRouter);
+
+app.listen(PORT, () =>
+  console.log(`[server] Server is listening on PORT: ${PORT}`)
+);
 
 module.exports = app;
