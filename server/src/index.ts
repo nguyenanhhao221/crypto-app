@@ -5,7 +5,6 @@ import morgan from 'morgan';
 import getCryptoRouter from './routes/getCryptoRouter';
 import getCryptoNewsRouter from './routes/getCryptoNewsRouter';
 import getCryptoExchangesRouter from './routes/getCryptoExchangesRouter';
-
 dotenv.config();
 
 const app = express();
