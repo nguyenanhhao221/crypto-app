@@ -35,27 +35,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.apiKey = void 0;
 const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
 const dotenv = __importStar(require("dotenv"));
+const getCryptoRouter_1 = require("../routes/getCryptoRouter");
 dotenv.config();
-const getCryptoRouter = express_1.default.Router();
-//Make sure the API key in env is valid
-exports.apiKey = process.env.X_RAPIDAPI_KEY;
-if (typeof exports.apiKey === 'undefined') {
+if (typeof getCryptoRouter_1.apiKey === 'undefined') {
     throw new Error('Invalid api key in env file');
 }
-//Coin ranking API to get Coin data
-const coinRankingHeader = {
-    'X-RapidAPI-Key': exports.apiKey,
-    'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
+const cryptoNewsHeaders = {
+    'X-BingApis-SDK': 'true',
+    'X-RapidAPI-Key': getCryptoRouter_1.apiKey,
+    'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
 };
-getCryptoRouter.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const getCryptoNewsRouter = express_1.default.Router();
+getCryptoNewsRouter.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const options = {
         method: 'GET',
-        url: 'https://coinranking1.p.rapidapi.com/coins',
-        headers: coinRankingHeader,
+        url: 'https://bing-news-search1.p.rapidapi.com/news/search',
+        headers: cryptoNewsHeaders,
         params: req.query,
     };
     try {
@@ -67,37 +65,4 @@ getCryptoRouter.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, f
         next(error);
     }
 }));
-//Coin ranking API to get detail for a coin base on id
-getCryptoRouter.get('/:coinId', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const options = {
-        method: 'GET',
-        url: `https://coinranking1.p.rapidapi.com/coin/${req.params.coinId}`,
-        headers: coinRankingHeader,
-    };
-    try {
-        const response = yield axios_1.default.request(options);
-        res.status(200).json(response.data);
-    }
-    catch (error) {
-        console.error(error);
-        next(error);
-    }
-}));
-//Coin ranking API to get coin history
-getCryptoRouter.get('/:coinId/history', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const options = {
-        method: 'GET',
-        url: `https://coinranking1.p.rapidapi.com/coin/${req.params.coinId}/history`,
-        headers: coinRankingHeader,
-        params: req.query,
-    };
-    try {
-        const response = yield axios_1.default.request(options);
-        res.status(200).json(response.data);
-    }
-    catch (error) {
-        console.error(error);
-        next(error);
-    }
-}));
-exports.default = getCryptoRouter;
+exports.default = getCryptoNewsRouter;
