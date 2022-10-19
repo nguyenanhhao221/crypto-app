@@ -13,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 const PORT = process.env.PORT || 8000;
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../build/index.html')));
 app.use('/get-crypto', getCryptoRouter);
 app.use('/get-crypto-news', getCryptoNewsRouter);
 app.use('/exchanges', getCryptoExchangesRouter);
