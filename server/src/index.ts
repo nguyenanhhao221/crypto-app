@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 
 const PORT = 8000;
 
-app.use('/', express.static(path.join(__dirname, '../../client/build')));
+app.use('/', express.static(path.join(__dirname, '/build')));
 app.use('/get-crypto', getCryptoRouter);
 app.use('/get-crypto-news', getCryptoNewsRouter);
 app.use('/exchanges', getCryptoExchangesRouter);
