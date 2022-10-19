@@ -1,5 +1,5 @@
 import millify from 'millify';
-import { Typography, Row, Col, Statistic, Card, Button } from 'antd';
+import { Typography, Row, Col, Statistic, Card } from 'antd';
 import { TBrands, TGloBalStats } from '../type';
 import BrandBackLink from './BrandBackLink';
 const { Title } = Typography;
